@@ -30,18 +30,18 @@ const MenuProps = {
     },
 };
 
-const names = [
-    'Oliver Hansen',
-    'Van Henry',
-    'April Tucker',
-    'Ralph Hubbard',
-    'Omar Alexander',
-    'Carlos Abbott',
-    'Miriam Wagner',
-    'Bradley Wilkerson',
-    'Virginia Andrews',
-    'Kelly Snyder',
-];
+// const names = [
+//     'Oliver Hansen',
+//     'Van Henry',
+//     'April Tucker',
+//     'Ralph Hubbard',
+//     'Omar Alexander',
+//     'Carlos Abbott',
+//     'Miriam Wagner',
+//     'Bradley Wilkerson',
+//     'Virginia Andrews',
+//     'Kelly Snyder',
+// ];
 
 function getStyles(name: string, personName: string[], theme: Theme) {
     return {
@@ -52,7 +52,7 @@ function getStyles(name: string, personName: string[], theme: Theme) {
     };
 }
 
-const MetricSelect = () => {
+const MetricSelect = (props: any) => {
     const classes = useStyles();
     const theme = useTheme();
     const [personName, setPersonName] = React.useState<string[]>([]);
@@ -61,7 +61,9 @@ const MetricSelect = () => {
         setPersonName(event.target.value as string[]);
     };
 
-    //const metric = metrics;
+    console.log('Props ', props);
+    console.log('props1 ', props.metrics.metrics);
+    const metricList = props.metrics.metrics;
     //console.log('Metric map', metric);
 
     return (
@@ -77,7 +79,7 @@ const MetricSelect = () => {
                     input={<Input />}
                     MenuProps={MenuProps}
                 >
-                    {names.map((name) => (
+                    {metricList.map((name:string) => (
                         <MenuItem key={name} value={name} style={getStyles(name, personName, theme)}>
                             {name}
                         </MenuItem>

@@ -13,7 +13,7 @@ const slice = createSlice({
   initialState,
   reducers: {
     metricsDataRecevied: (state, action: PayloadAction<string[]>) => {
-        console.log('Action ', action);
+        console.log('Action ', action.payload);
         state.metrics = action.payload;
     },
     metricsApiErrorReceived: (state, action: PayloadAction<ApiErrorAction>) => state,

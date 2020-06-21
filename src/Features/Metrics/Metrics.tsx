@@ -17,7 +17,8 @@ const query = `
 `;
 
 const getMetrics = (state: IState) => {
-    const { metrics } = state.metrics;
+    console.log('State ', state);
+    const { ...metrics } = state.metrics;
     return {
         metrics
     };
@@ -53,5 +54,5 @@ export default () => {
   
     if (fetching) return <LinearProgress />;
     console.log('Metrics', metrics);
-    return <MetricSelect />;
+    return <MetricSelect metrics={metrics} />;
 };
