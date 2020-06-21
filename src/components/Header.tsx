@@ -3,6 +3,7 @@ import Typography from '@material-ui/core/Typography';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import { makeStyles } from '@material-ui/core/styles';
+import Metrics from '../Features/Metrics/Metrics';
 import Weather from '../Features/Weather/Weather';
 
 const useStyles = makeStyles({
@@ -22,6 +23,7 @@ export default () => {
           {name} EOG React Visualization Assessment
         </Typography>
         <Weather />
+        <Metrics />
       </Toolbar>
     </AppBar>
   );

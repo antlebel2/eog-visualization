@@ -47,7 +47,7 @@ const Weather = () => {
   };
   const dispatch = useDispatch();
   const { temperatureinFahrenheit, description, locationName } = useSelector(getWeather);
-
+  
   const [result] = useQuery({
     query,
     variables: {
@@ -65,7 +65,7 @@ const Weather = () => {
     dispatch(actions.weatherDataRecevied(getWeatherForLocation));
   }, [dispatch, data, error]);
 
-  if (fetching) return <LinearProgress />;
 
+  if (fetching) return <LinearProgress />;
   return <Chip label={`Weather in ${locationName}: ${description} and ${temperatureinFahrenheit}°`} />;
 };
