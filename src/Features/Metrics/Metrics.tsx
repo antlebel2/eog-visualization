@@ -6,6 +6,7 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 import MetricSelect from '../../components/MetricSelect';
 import { IState } from '../../store';
 
+
 const client = createClient({
     url: 'https://react.eogresources.com/graphql',
 });
@@ -17,7 +18,6 @@ const query = `
 `;
 
 const getMetrics = (state: IState) => {
-    console.log('State ', state);
     const { ...metrics } = state.metrics;
     return {
         metrics
@@ -54,5 +54,5 @@ export default () => {
   
     if (fetching) return <LinearProgress />;
     console.log('Metrics', metrics);
-    return <MetricSelect metrics={metrics} />;
+    return <MetricSelect metrics={metrics.metrics} />;
 };

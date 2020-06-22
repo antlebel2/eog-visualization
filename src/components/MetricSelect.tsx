@@ -10,11 +10,12 @@ import Select from '@material-ui/core/Select';
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         formControl: {
+            background: theme.palette.secondary.main,
             margin: theme.spacing(1),
             minWidth: 300,
             maxWidth: 300,
-            //position: 'absolute',
-            //right: 0,
+            position: 'relative',
+            alignSelf: 'flex-end',
         },
     }),
 );
@@ -30,23 +31,10 @@ const MenuProps = {
     },
 };
 
-// const names = [
-//     'Oliver Hansen',
-//     'Van Henry',
-//     'April Tucker',
-//     'Ralph Hubbard',
-//     'Omar Alexander',
-//     'Carlos Abbott',
-//     'Miriam Wagner',
-//     'Bradley Wilkerson',
-//     'Virginia Andrews',
-//     'Kelly Snyder',
-// ];
-
-function getStyles(name: string, personName: string[], theme: Theme) {
+function getStyles(metric: string, metrics: string[], theme: Theme) {
     return {
         fontWeight:
-            personName.indexOf(name) === -1
+            metrics.indexOf(metric) === -1
                 ? theme.typography.fontWeightRegular
                 : theme.typography.fontWeightMedium,
     };
@@ -55,33 +43,30 @@ function getStyles(name: string, personName: string[], theme: Theme) {
 const MetricSelect = (props: any) => {
     const classes = useStyles();
     const theme = useTheme();
-    const [personName, setPersonName] = React.useState<string[]>([]);
+    const [metricSelected, setMetricSelected] = React.useState<string[]>([]);
 
     const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-        setPersonName(event.target.value as string[]);
+        setMetricSelected(event.target.value as string[]);
     };
 
-    console.log('Props ', props);
-    console.log('props1 ', props.metrics.metrics);
-    const metricList = props.metrics.metrics;
-    //console.log('Metric map', metric);
+    const metricList = props.metrics;
 
     return (
-        <div>
+        <div style={{float:'right'}}>
             <FormControl className={classes.formControl}>
-                <InputLabel id="demo-mutiple-name-label">Name</InputLabel>
+                <InputLabel id="mutiple-metrics-label">Metrics</InputLabel>
                 <Select
-                    labelId="demo-mutiple-name-label"
-                    id="demo-mutiple-name"
+                    labelId="mutiple-metrics-label"
+                    id="mutiple-metrics"
                     multiple
-                    value={personName}
+                    value={metricSelected}
                     onChange={handleChange}
                     input={<Input />}
                     MenuProps={MenuProps}
                 >
-                    {metricList.map((name:string) => (
-                        <MenuItem key={name} value={name} style={getStyles(name, personName, theme)}>
-                            {name}
+                    {metricList.map((metric:string) => (
+                        <MenuItem key={metric} value={metric} style={getStyles(metric, metricSelected, theme)}>
+                            {metric}
                         </MenuItem>
                     ))}
                 </Select>
