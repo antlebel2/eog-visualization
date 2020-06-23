@@ -6,7 +6,6 @@ export type ApiErrorAction = {
 
 const initialState = {
   metrics: [] as string[],
-  metricSelected: '',
 };
 
 const slice = createSlice({
@@ -18,10 +17,6 @@ const slice = createSlice({
         state.metrics = action.payload;
     },
     metricsApiErrorReceived: (state, action: PayloadAction<ApiErrorAction>) => state,
-    metricOnChange: (state, action) => {
-        console.log('OnChange ', action);
-        state.metricSelected = action.payload;
-    },
   },
 });
 
